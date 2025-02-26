@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+    <title>Nöbetçi Öğretmen Görevlendirme</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Nöbetçi Öğretmen Görevlendirme</h1>
+        </header>
+
+        <div class="main">
+            <aside class="left-panel">
+                <h2>Öğretmenler</h2>
+                <ul id="teacherList"></ul>
+            </aside>
+
+            <section class="schedule">
+                <h2>Nöbetçi Öğretmenlerin Ders Durumları</h2>
+                <table id="mainSchedule">
+                    <tr>
+                        <th>Adı Soyadı</th>
+                        <th>1. Ders</th>
+                        <th>2. Ders</th>
+                        <th>3. Ders</th>
+                        <th>4. Ders</th>
+                        <th>5. Ders</th>
+                        <th>6. Ders</th>
+                        <th>7. Ders</th>
+                        <th>8. Ders</th>
+                    </tr>
+                    <tr>
+                        <td>Ayhan K.</td>
+                        <td class="full">DOLU</td>
+                        <td></td>
+                        <td class="full">DOLU</td>
+                        <td></td>
+                        <td></td>
+                        <td class="full">DOLU</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            
+                <h2>Seçilen Öğretmenlerin Ders Durumları</h2>
+                <table id="selectedTeachersTable">
+                    <tr>
+                        <th>Adı Soyadı</th>
+                        <th>1. Ders</th>
+                        <th>2. Ders</th>
+                        <th>3. Ders</th>
+                        <th>4. Ders</th>
+                        <th>5. Ders</th>
+                        <th>6. Ders</th>
+                        <th>7. Ders</th>
+                        <th>8. Ders</th>
+                    </tr>
+                </table>
+            </section>
+            
+
+            <aside class="right-panel">
+                <h2>Görevlendirmeler</h2>
+                <p>11/A → 5. Saat → Gönül Hoca</p>
+                <p>10/B → 2. Saat → Alp Hoca</p>
+            </aside>
+        </div>
+
+        <footer>
+            <button onclick="clearAll()"><i class='fas fa-trash-alt' style='font-size:16px'></i>Temizle</button>
+            <button onclick="printSection()"><i class='fas fa-print' style='font-size:16px'></i>Yazdır</button>
+        </footer>
+    </div>
+    
+    <script>
+        const teachers = [
+        "Bülent MÜLHİM", "Mehmet M UÇAR", "Yıldıray YILMAZ", "Zeynep M YİĞİT", "Hatice Tuba TUNA",
+            "CEMAL ÖZERUZ", "Ayşe Mutl ÖNALAN", "Zeki Büle YÜCEL", "RAZİYE E ESEN", "Ahmet CANTÜR",
+            "Ayhan YAKŞİ", "Halil BAĞRIAÇ", "Gülseren YILMAZ", "Ergül UÇAR", "ÇETİN CEYLAN",
+            "Ahmet ORUÇ", "Levent DEMİREL", "Gönül BURAN", "Birol BOZKUR", "ÖZNUR BARUT",
+            "Fatma MÜLHİM", "Sevilay DEMİRPE", "Olcay ÇELİK", "Zehra AKAR", "Yücel BİLİR",
+            "Abdullah ERDEM", "Tuncay ÇIKRIKÇI", "Salih YONAR", "Muzaffer ÇAKICI", "Kadriye E VARLIK",
+            "Nisa Mersin", "Burcu DEMİRKI", "Hakan ÖLMEZ", "Sade Caz SARI", "Hatice DEMİRAL",
+            "Yücel ÇETİN", "AYHAN AFŞAR", "Malik Ejde DURMAZ", "MEHMET ALDEMİR", "Funda ŞAHİN",
+            "HASAN KANAT", "Şencan KAYNAK", "Sevil KAYA", "Yasemin SERİNDE", "Sait ERDOĞA",
+            "H.İbrahim CANBAZ", "Hüseyin ARSLAN", "İsmail DURU", "Özlem ERTUĞR", "Murat SICACIK",
+            "Ebru AŞRAK", "Serkan AKYOL", "SEYHAN ASLAN", "AHMET YAVUZ", "HACI BAY EKİNCİ",
+            "İSA ÇAĞL TUNÇBİL"
+        ];
+    
+        const teacherList = document.getElementById("teacherList");
+    
+        teachers.forEach(teacher => {
+            const li = document.createElement("li");
+    
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.classList.add("teacher-checkbox");
+            checkbox.dataset.name = teacher;
+            checkbox.onclick = () => updateSelection();
+    
+            const label = document.createElement("label");
+            label.textContent = teacher;
+    
+            li.appendChild(checkbox);
+            li.appendChild(label);
+            teacherList.appendChild(li);
+        });
+    
+        function updateSelection() {
+            const selectedTeachers = [];
+            const checkboxes = document.querySelectorAll(".teacher-checkbox:checked");
+    
+            checkboxes.forEach(checkbox => {
+                selectedTeachers.push(checkbox.dataset.name);
+            });
+    
+            console.log("Seçilen Öğretmenler:", selectedTeachers);
+    
+
+            updateSelectedTeachersTable(selectedTeachers);
+        }
+    
+        function updateSelectedTeachersTable(teachers) {
+            const table = document.getElementById("selectedTeachersTable");
+    
+            if (!table) {
+                console.error("Tablo bulunamadı! ID: selectedTeachersTable");
+                return;
+            }
+    
+            table.innerHTML = `
+                <tr>
+                    <th>Adı Soyadı</th>
+                    <th>1. Ders</th>
+                    <th>2. Ders</th>
+                    <th>3. Ders</th>
+                    <th>4. Ders</th>
+                    <th>5. Ders</th>
+                    <th>6. Ders</th>
+                    <th>7. Ders</th>
+                    <th>8. Ders</th>
+                </tr>`;
+    
+            teachers.forEach(teacher => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${teacher}</td>
+                    <td></td><td></td><td></td><td></td>
+                    <td></td><td></td><td></td><td></td>
+                `;
+                table.appendChild(row);
+            });
+        }
+    </script>
+    
+</body>
+</html>

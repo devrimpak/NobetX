@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Paneli</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="admin-container">
+        <aside class="sidebar">
+            <h2>Admin Paneli</h2>
+            <ul>
+                <li><a href="#" id="dashboard">Dashboard</a></li>
+                <li><a href="#" id="manageTeachers">Öğretmen Yönetimi</a></li>
+                <li><a href="#" id="schedule">Ders Programı</a></li>
+                <li><a href="index.html">Ana Sayfa</a></li>
+            </ul>
+        </aside>
+
+        <main class="admin-content">
+            <section id="dashboardSection">
+                <h1>Hoşgeldiniz, Admin!</h1>
+                <p>Buradan öğretmenleri ve ders programlarını yönetebilirsiniz.</p>
+            </section>
+
+            <section id="teacherManagement" class="hidden">
+                <h2>Öğretmen Yönetimi</h2>
+                <input type="text" id="teacherName" placeholder="Öğretmen Adı">
+                <button id="addTeacher">➕ Ekle</button>
+                <ul id="teacherList"></ul>
+            </section>
+
+            <section id="schedule" class="hidden">
+                <h2>Ders Programı</h2>
+                <p>Bu bölümde dersleri düzenleyebilirsiniz.</p>
+            </section>
+        </main>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
