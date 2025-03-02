@@ -3,38 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <title>Admin Paneli</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
 </head>
 <body>
 
     <div class="admin-container">
         <aside class="sidebar">
-            <h2>Admin Paneli</h2>
+            <h2><i class="fa fa-user"></i> Yönetici Paneli</h2>
             <ul>
-                <li><a href="#" id="dashboard">Dashboard</a></li>
-                <li><a href="#" id="manageTeachers">Öğretmen Yönetimi</a></li>
-                <li><a href="#" id="schedule">Ders Programı</a></li>
-                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="#" id="scheduleBtn"><i class="fa fa-book"></i> Ders Programları</a></li>
+                <li><a href="#" id="dutyTeachersBtn"><i class="fa fa-book"></i> Nöbetçi Öğretmenler</a></li>
+                <li><a href="index.html" id="homeBtn"><i class="fa fa-home"></i> Ana Sayfa</a></li>
             </ul>
         </aside>
 
         <main class="admin-content">
-            <section id="dashboardSection">
-                <h1>Hoşgeldiniz, Admin!</h1>
-                <p>Buradan öğretmenleri ve ders programlarını yönetebilirsiniz.</p>
+            <section id="homeSection">
+                <h1>Merhabalar, Yönetici!</h1>
+                <p>Buradan Ders Programlarını Ayarlayabilir, Nöbetçi Öğretmenleri Düzenleyebilirsin.</p>
             </section>
 
-            <section id="teacherManagement" class="hidden">
-                <h2>Öğretmen Yönetimi</h2>
-                <input type="text" id="teacherName" placeholder="Öğretmen Adı">
-                <button id="addTeacher">➕ Ekle</button>
-                <ul id="teacherList"></ul>
+            <section id="scheduleSection" class="hidden">
+                <h2>Ders Programları</h2>
+                <table id="mainSchedule">
+                    <tr>
+                        <th>Adı Soyadı</th>
+                        <th>1. Ders</th>
+                        <th>2. Ders</th>
+                        <th>3. Ders</th>
+                        <th>4. Ders</th>
+                        <th>5. Ders</th>
+                        <th>6. Ders</th>
+                        <th>7. Ders</th>
+                        <th>8. Ders</th>
+                    </tr>
+                    <!-- 16 öğretmen için satır ekleniyor -->
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const table = document.getElementById("mainSchedule");
+
+                            for (let i = 0; i < 10; i++) {
+                                let row = table.insertRow();
+                                let cellName = row.insertCell(0);
+                                cellName.innerHTML = `<input type="text" class="teacher-name" placeholder="Öğretmen Adı">`;
+
+                                for (let j = 1; j <= 8; j++) {
+                                    let cell = row.insertCell(j);
+                                    cell.classList.add("editable");
+                                }
+                            }
+                        });
+                    </script>
+                </table>
             </section>
 
-            <section id="schedule" class="hidden">
-                <h2>Ders Programı</h2>
-                <p>Bu bölümde dersleri düzenleyebilirsiniz.</p>
+            <section id="dutyTeachersSection" class="hidden">
+                <h2>Nöbetçi Öğretmenler</h2>
+                <table id="dutyTeacher">
+                    <tr>
+                        <th>Adı Soyadı</th>
+                        <th>1. Ders</th>
+                        <th>2. Ders</th>
+                        <th>3. Ders</th>
+                        <th>4. Ders</th>
+                        <th>5. Ders</th>
+                        <th>6. Ders</th>
+                        <th>7. Ders</th>
+                        <th>8. Ders</th>
+                    </tr>
+                    <!-- 16 öğretmen için satır ekleniyor -->
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                            const table = document.getElementById("dutyTeacher");
+
+                            for (let i = 0; i < 10; i++) {
+                                let row = table.insertRow();
+                                let cellName = row.insertCell(0);
+                                cellName.innerHTML = `<input type="text" class="teacher-name" placeholder="Öğretmen Adı">`;
+
+                                for (let j = 1; j <= 8; j++) {
+                                    let cell = row.insertCell(j);
+                                    cell.classList.add("editable");
+                                }
+                            }
+                        });
+                    </script>
+                </table>
             </section>
         </main>
     </div>

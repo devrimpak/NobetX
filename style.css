@@ -182,59 +182,6 @@ button:hover {
     }
 }
 
-
-/* Admin Paneli */
-.admin-container {
-    display: flex;
-    height: 100vh;
-}
-
-.sidebar {
-    width: 250px;
-    background: #007bff;
-    color: white;
-    padding: 20px;
-}
-
-.sidebar h2 {
-    text-align: center;
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    padding: 10px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.sidebar ul li a, .sidebar ul li button {
-    text-decoration: none;
-    color: white;
-    display: block;
-    background: none;
-    border: none;
-    width: 100%;
-    text-align: left;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.sidebar ul li a:hover, .sidebar ul li button:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.admin-content {
-    flex-grow: 1;
-    padding: 20px;
-}
-
-.hidden {
-    display: none;
-}
-
 #teacherList {
     margin-top: 10px;
     list-style: none;
@@ -277,7 +224,7 @@ button:hover {
 }
 
 .left-panel li label:hover {
-    background-color: #f0f0f0;
+    background-color: #ff0000;
 }
 
 

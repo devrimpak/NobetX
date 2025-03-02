@@ -45,3 +45,7 @@ function printSection() {
     newWindow.document.close();
     newWindow.print();
 }
+
+function adminPanel() {
+    window.location.href = "admin.html";
+}
